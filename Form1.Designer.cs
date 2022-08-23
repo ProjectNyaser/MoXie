@@ -93,6 +93,7 @@
             this.MinimumSize = new System.Drawing.Size(160, 160);
             this.Name = "Form1";
             this.Text = "MoXie";
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

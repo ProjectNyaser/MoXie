@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace MoXie
 {
@@ -39,7 +41,14 @@ namespace MoXie
 
                 label1.Text = "´ò°üpptx";
                 Directory.SetCurrentDirectory("temp");
-                Process.Start(new ProcessStartInfo { FileName = "..\\7z.exe", Arguments = "a pptx.zip ppt\\slides\\slide1.xml", CreateNoWindow = true }).WaitForExit();
+                Process? process = Process.Start(new ProcessStartInfo { FileName = "..\\7z.exe", Arguments = "a pptx.zip ppt\\slides\\slide1.xml", CreateNoWindow = true });
+                if (process is null)
+                {
+                    throw new Exception("Can not start 7z.exe");
+                } else
+                {
+                    process.WaitForExit();
+                }
                 File.Move("pptx.zip", "MoXie.pptx");
                 Directory.SetCurrentDirectory("..");
 
@@ -79,6 +88,11 @@ namespace MoXie
                 newList.Insert(random.Next(newList.Count + 1), item);
             }
             return newList;
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            TextBook book = new TextBook().FromString(File.ReadAllLines("data\\textbook.txt"));
         }
     }
 }
