@@ -1,5 +1,6 @@
 ﻿namespace MoXie
 {
+    [Serializable]
     internal class Question
     {
         public QuestionPart[] Parts;
@@ -71,6 +72,7 @@
         }
     }
 
+    [Serializable]
     internal class QuestionPart
     {
         public string Part;
