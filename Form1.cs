@@ -92,7 +92,7 @@ namespace MoXie
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            TextBook book = new TextBook().FromString(File.ReadAllLines("data\\textbook.txt"));
+            TextBook textBook = new TextBook().FromString(File.ReadAllLines("data\\textbook.txt"));
         }
     }
 }
