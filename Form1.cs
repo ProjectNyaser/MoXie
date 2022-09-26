@@ -99,8 +99,14 @@ namespace MoXie
             File.WriteAllText("temp\\ppt\\slides\\slide1.xml", s);
 
             label1.Text = "打包pptx";
+            string sevenzip = $"{Directory.GetCurrentDirectory()}\\7z.exe";
             Directory.SetCurrentDirectory("temp");
-            Process? process = Process.Start(new ProcessStartInfo { FileName = "..\\7z.exe", Arguments = "a pptx.zip ppt\\slides\\slide1.xml", CreateNoWindow = true });
+            Process? process = Process.Start(new ProcessStartInfo
+            {
+                FileName = sevenzip,
+                Arguments = "a pptx.zip ppt\\slides\\slide1.xml",
+                CreateNoWindow = true
+            });
             if (process is null)
             {
                 throw new Exception("Can not start 7z.exe");
