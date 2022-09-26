@@ -1,4 +1,4 @@
-﻿namespace MoXie
+namespace MoXie
 {
     partial class Form1
     {

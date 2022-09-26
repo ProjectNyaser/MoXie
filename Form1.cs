@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.Serialization.Formatters.Binary;
-#pragma warning disable SYSLIB0011 // ÀàĞÍ»ò³ÉÔ±ÒÑ¹ıÊ±
+#pragma warning disable SYSLIB0011 // ç±»å‹æˆ–æˆå‘˜å·²è¿‡æ—¶
 
 namespace MoXie
 {
@@ -19,12 +19,12 @@ namespace MoXie
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            label1.Text = "×¼±¸¿ªÊ¼";
+            label1.Text = "å‡†å¤‡å¼€å§‹";
             try
             {
                 List<Question> questions = GetQuestions();
 
-                label1.Text = "±£´æÌâÄ¿";
+                label1.Text = "ä¿å­˜é¢˜ç›®";
                 Stream stream = new FileStream($"questions_{DateTime.Now.Ticks}.bin", FileMode.Create, FileAccess.Write, FileShare.None);
                 new BinaryFormatter().Serialize(stream, questions);
                 stream.Close();
@@ -33,27 +33,27 @@ namespace MoXie
             }
             catch (Exception ex)
             {
-                label1.Text = "Éú³ÉÊ§°Ü";
+                label1.Text = "ç”Ÿæˆå¤±è´¥";
                 _ = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            label1.Text = "×¼±¸¾ÍĞ÷";
+            label1.Text = "å‡†å¤‡å°±ç»ª";
         }
 
         private List<Question> GetQuestions()
         {
-            label1.Text = "Éú³ÉÌâÄ¿";
+            label1.Text = "ç”Ÿæˆé¢˜ç›®";
             TextBook textBook = new TextBook().FromString(File.ReadAllLines("data\\textbook.txt"));
             List<Question> questions = ReadQuestions("data\\questions.txt");
             questions.AddRange(textBook.GetQuestions());
 
-            label1.Text = "´òÂÒÌâÄ¿";
+            label1.Text = "æ‰“ä¹±é¢˜ç›®";
             for (int i = 0; i < 5; i++)
             {
                 questions = RandomSortList(questions);
             }
 
-            label1.Text = "Ëæ»ú³éÌâ";
-            #region ·½·¨1(ÆúÓÃ)
+            label1.Text = "éšæœºæŠ½é¢˜";
+            #region æ–¹æ³•1(å¼ƒç”¨)
             /*
             int[] indexs = new int[5];
             for (int i = 0; i < 5; i++)
@@ -72,7 +72,7 @@ namespace MoXie
             questions = question1;
             */
             #endregion
-            #region ·½·¨2
+            #region æ–¹æ³•2
             for (int i = 0; questions.Count > 5; i++)
             {
                 _ = questions.Remove(questions[Random.Shared.Next(0, questions.Count - 1)]);
@@ -84,21 +84,21 @@ namespace MoXie
 
         private void OpenInPowerPoint(List<Question> questions)
         {
-            label1.Text = "Çå¿Õ»º´æ";
+            label1.Text = "æ¸…ç©ºç¼“å­˜";
             if (Directory.Exists("temp"))
             {
                 Directory.Delete("temp", true);
             }
             _ = Directory.CreateDirectory("temp\\ppt\\slides");
 
-            label1.Text = "¸´ÖÆpptx";
+            label1.Text = "å¤åˆ¶pptx";
             File.Copy("data\\pptx.zip", "temp\\pptx.zip");
 
-            label1.Text = "Éú³Éslide";
+            label1.Text = "ç”Ÿæˆslide";
             string s = QuestionsToString(questions);
             File.WriteAllText("temp\\ppt\\slides\\slide1.xml", s);
 
-            label1.Text = "´ò°üpptx";
+            label1.Text = "æ‰“åŒ…pptx";
             Directory.SetCurrentDirectory("temp");
             Process? process = Process.Start(new ProcessStartInfo { FileName = "..\\7z.exe", Arguments = "a pptx.zip ppt\\slides\\slide1.xml", CreateNoWindow = true });
             if (process is null)
@@ -112,7 +112,7 @@ namespace MoXie
             File.Move("pptx.zip", "MoXie.pptx");
             Directory.SetCurrentDirectory("..");
 
-            label1.Text = "´ò¿ªpptx";
+            label1.Text = "æ‰“å¼€pptx";
             Process.Start("explorer.exe", "temp\\MoXie.pptx").WaitForExit();
         }
 
@@ -161,7 +161,7 @@ namespace MoXie
                 Refresh();
                 try
                 {
-                    label1.Text = "ÕıÔÚ¶ÁÈ¡";
+                    label1.Text = "æ­£åœ¨è¯»å–";
                     Stream stream = File.OpenRead(path);
                     List<Question> questions = (List<Question>)new BinaryFormatter().Deserialize(stream);
                     OpenInPowerPoint(questions);

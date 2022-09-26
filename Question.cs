@@ -39,13 +39,13 @@
             bool hide = false;
             foreach (char c in chars)
             {
-                if (c == '_')
+                if (c == '[')
                 {
                     _ = question.AddPart(part, hide);
                     part = "";
                     hide = true;
                 }
-                else if (c == '-')
+                else if (c == ']')
                 {
                     _ = question.AddPart(part, hide);
                     part = "";
