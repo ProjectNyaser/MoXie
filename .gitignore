@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Nyaser - Debug Only
 start.cmd
+build.cmd

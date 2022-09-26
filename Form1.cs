@@ -44,7 +44,7 @@ namespace MoXie
             label1.Text = "生成题目";
             TextBook textBook = new TextBook().FromString(File.ReadAllLines("data\\textbook.txt"));
             List<Question> questions = ReadQuestions("data\\questions.txt");
-            questions.AddRange(textBook.GetQuestions());
+            //questions.AddRange(textBook.GetQuestions());
 
             label1.Text = "打乱题目";
             for (int i = 0; i < 5; i++)
