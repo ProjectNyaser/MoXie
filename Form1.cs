@@ -101,7 +101,6 @@ namespace MoXie
             label1.Text = "打包pptx";
             string sevenzip = $"{Directory.GetCurrentDirectory()}\\7z.exe";
             Directory.SetCurrentDirectory("temp");
-            _ = MessageBox.Show(sevenzip + "\r\n" + $"{File.Exists(sevenzip)}");
             Process? process = Process.Start(new ProcessStartInfo
             {
                 FileName = sevenzip,
