@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO.Compression;
 using System.Runtime.Serialization.Formatters.Binary;
 #pragma warning disable SYSLIB0011 // 类型或成员已过时
 
@@ -81,7 +82,7 @@ namespace MoXie
 
             return questions;
         }
-
+        
         private void OpenInPowerPoint(List<Question> questions)
         {
             label1.Text = "清空缓存";
@@ -99,7 +100,6 @@ namespace MoXie
             File.WriteAllText("temp\\ppt\\slides\\slide1.xml", s);
 
             label1.Text = "打包pptx";
-            //string sevenzip = $"{Directory.GetCurrentDirectory()}\\7z.exe";
             Directory.SetCurrentDirectory("temp");
             Process? process = Process.Start(new ProcessStartInfo
             {
